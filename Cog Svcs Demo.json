@@ -1,0 +1,462 @@
+{
+	"info": {
+		"_postman_id": "e1ad894f-67fc-41fe-bb42-bf91760d26e4",
+		"name": "Cognitive Services",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Computer Vision Analyze",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{ComputerVisionCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{ComputerVisionCS-url}}/analyze?visualFeatures=Categories,Tags,Description,Faces,ImageType,Color,Adult&details=Celebrities,Landmarks&language=en",
+					"host": [
+						"{{ComputerVisionCS-url}}"
+					],
+					"path": [
+						"analyze"
+					],
+					"query": [
+						{
+							"key": "visualFeatures",
+							"value": "Categories,Tags,Description,Faces,ImageType,Color,Adult"
+						},
+						{
+							"key": "details",
+							"value": "Celebrities,Landmarks"
+						},
+						{
+							"key": "language",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Computer Vision Describe",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{ComputerVisionCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{ComputerVisionCS-url}}/describe",
+					"host": [
+						"{{ComputerVisionCS-url}}"
+					],
+					"path": [
+						"describe"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Computer Vision Thumbnail",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{ComputerVisionCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{ComputerVisionCS-url}}/generateThumbnail?width=100&height=100&smartCropping=true",
+					"host": [
+						"{{ComputerVisionCS-url}}"
+					],
+					"path": [
+						"generateThumbnail"
+					],
+					"query": [
+						{
+							"key": "width",
+							"value": "100"
+						},
+						{
+							"key": "height",
+							"value": "100"
+						},
+						{
+							"key": "smartCropping",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Computer Vision OCR",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{ComputerVisionCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{ComputerVisionCS-url}}/ocr?language=en",
+					"host": [
+						"{{ComputerVisionCS-url}}"
+					],
+					"path": [
+						"ocr"
+					],
+					"query": [
+						{
+							"key": "language",
+							"value": "en"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Face Detect",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/octet-stream"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{FaceCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "file",
+					"file": {}
+				},
+				"url": {
+					"raw": "{{FaceCS-url}}/detect?returnFaceId=true&returnFaceLandmarks=true&returnFaceAttributes=age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise",
+					"host": [
+						"{{FaceCS-url}}"
+					],
+					"path": [
+						"detect"
+					],
+					"query": [
+						{
+							"key": "returnFaceId",
+							"value": "true"
+						},
+						{
+							"key": "returnFaceLandmarks",
+							"value": "true"
+						},
+						{
+							"key": "returnFaceAttributes",
+							"value": "age,gender,headPose,smile,facialHair,glasses,emotion,hair,makeup,occlusion,accessories,blur,exposure,noise"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Face Detect Verify",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{FaceCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"faceId1\": \"e64a295e-cfb0-4d53-a0a2-8ce12ed845a6\",\r\n    \"faceId2\": \"9d19e559-a0ab-4ca8-ad3a-e0733a5b82c6\"\r\n}"
+				},
+				"url": {
+					"raw": "{{FaceCS-url}}/verify",
+					"host": [
+						"{{FaceCS-url}}"
+					],
+					"path": [
+						"verify"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Translator Text Translate",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{TranslatorTextCS-key}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\"Text\":\"I love cognitive services!\"}\r\n]"
+				},
+				"url": {
+					"raw": "{{TranslatorTextCS-url}}/Translate?from=en&to=es&api-version=3.0",
+					"host": [
+						"{{TranslatorTextCS-url}}"
+					],
+					"path": [
+						"Translate"
+					],
+					"query": [
+						{
+							"key": "from",
+							"value": "en"
+						},
+						{
+							"key": "to",
+							"value": "es"
+						},
+						{
+							"key": "api-version",
+							"value": "3.0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Text Analytics Key Phrase",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{TextAnalyticsCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"documents\": [\r\n    {\r\n      \"language\": \"en\",\r\n      \"id\": \"1\",\r\n      \"text\": \"Wish your app could see, hear, speak, understand and interpret your user needs through natural methods of communication? Started researching Artificial Intelligence and Neural Networks, but it all just makes your head hurt? Wish there was an easy to consume web service by the leading researchers in the field that you could just call to teach your app/Web Site to see, hear, speak, understand and interpret your user needs through natural methods of communication? In this session we will kick the tires on the Cognitive Services available in Azure. Attendees will leave with an understanding of how to give their app superpowers.\"\r\n    },\r\n\t{\r\n      \"language\": \"en\",\r\n      \"id\": \"2\",\r\n      \"text\": \"In this talk we will take a simple ASP.NET MVC application and check it in to VisualStudio.com Source Control. We will then use the online Build tools to automate builds on check-in. Then using the online release management we will automate deploying it to our Dev, QA and Production environments. All the while ensuring that we keep all of the configuration for each of these environments safe.\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{TextAnalyticsCS-url}}/keyPhrases",
+					"host": [
+						"{{TextAnalyticsCS-url}}"
+					],
+					"path": [
+						"keyPhrases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Text Analytics Sentiment",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{TextAnalyticsCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"documents\": [\r\n    {\r\n      \"language\": \"en\",\r\n      \"id\": \"1\",\r\n      \"text\": \"Shawn's Presenation was awesome, he is the best presenter I have ever seen!\"\r\n    },\r\n\t{\r\n      \"language\": \"en\",\r\n      \"id\": \"2\",\r\n      \"text\": \"The traffic in Austin is horrible, people slow down for no reason. UGH!\"\r\n    },\r\n\t{\r\n      \"language\": \"en\",\r\n      \"id\": \"3\",\r\n      \"text\": \"The big red dog jumpped over the short white fence.\"\r\n    }\r\n  ]\r\n}"
+				},
+				"url": {
+					"raw": "{{TextAnalyticsCS-url}}/sentiment",
+					"host": [
+						"{{TextAnalyticsCS-url}}"
+					],
+					"path": [
+						"sentiment"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Spell Check",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{BingSpellCheckCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "Text",
+							"value": "Wish your app could see, hear, speak, understand and interpret your user needs through natural methods of communication? Started researching Artificial Intelligence and Neural Networks, but it all just makes your head hurt? Wish there was an easy to consume web service by the leading researchers in the field that you could just call to teach your app/Web Site to see, hear, speak, understand and interpret your user needs through natural methods of communication? In this session we will kick the tires on the Cognitive Services available in Azure. Attendees will leave with an understanding of how to give their app superpowers",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{BingSpellCheckCS-url}}?mode=proof&mkt=en-us",
+					"host": [
+						"{{BingSpellCheckCS-url}}"
+					],
+					"query": [
+						{
+							"key": "mode",
+							"value": "proof"
+						},
+						{
+							"key": "mkt",
+							"value": "en-us"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Entity Search",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "{{BingEntitySearchCS-key}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BingEntitySearchCS-url}}?q=Tony Stark&mkt=en-US&count=10&offset=0&safesearch=Moderate",
+					"host": [
+						"{{BingEntitySearchCS-url}}"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Tony Stark"
+						},
+						{
+							"key": "mkt",
+							"value": "en-US"
+						},
+						{
+							"key": "count",
+							"value": "10"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						},
+						{
+							"key": "safesearch",
+							"value": "Moderate"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
