@@ -27,6 +27,13 @@ CREATE TABLE [dbo].[ProductTranslations](
 ) ON [PRIMARY]
 GO
 
+/*
+
+DELETE FROM [dbo].[Products]
+DELETE FROM [dbo].[ProductTranslations]
+
+*/
+
 
 INSERT INTO [dbo].[Products]
            ([ProductName]

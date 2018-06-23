@@ -1,0 +1,133 @@
+{
+    "$connections": {
+        "value": {
+            "microsofttranslator": {
+                "connectionId": "/subscriptions/55fed35b-9e49-43ba-8160-083810b1af12/resourceGroups/ProductsDemo/providers/Microsoft.Web/connections/microsofttranslator",
+                "connectionName": "microsofttranslator",
+                "id": "/subscriptions/55fed35b-9e49-43ba-8160-083810b1af12/providers/Microsoft.Web/locations/southcentralus/managedApis/microsofttranslator"
+            },
+            "sql": {
+                "connectionId": "/subscriptions/55fed35b-9e49-43ba-8160-083810b1af12/resourceGroups/ProductsDemo/providers/Microsoft.Web/connections/sql",
+                "connectionName": "sql",
+                "id": "/subscriptions/55fed35b-9e49-43ba-8160-083810b1af12/providers/Microsoft.Web/locations/southcentralus/managedApis/sql"
+            }
+        }
+    },
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "For_each": {
+                "actions": {
+                    "Insert_row": {
+                        "inputs": {
+                            "body": {
+                                "Language": "@body('Parse_JSON')?['Name']",
+                                "ProductDescription": "@body('Translate_text')",
+                                "ProductId": "@triggerBody()?['ProductId']"
+                            },
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['sql']['connectionId']"
+                                }
+                            },
+                            "method": "post",
+                            "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[ProductTranslations]'))}/items"
+                        },
+                        "runAfter": {
+                            "Translate_text": [
+                                "Succeeded"
+                            ]
+                        },
+                        "type": "ApiConnection"
+                    },
+                    "Parse_JSON": {
+                        "inputs": {
+                            "content": "@items('For_each')",
+                            "schema": {
+                                "properties": {
+                                    "Code": {
+                                        "type": "string"
+                                    },
+                                    "Name": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        },
+                        "runAfter": {},
+                        "type": "ParseJson"
+                    },
+                    "Translate_text": {
+                        "inputs": {
+                            "host": {
+                                "connection": {
+                                    "name": "@parameters('$connections')['microsofttranslator']['connectionId']"
+                                }
+                            },
+                            "method": "get",
+                            "path": "/Translate",
+                            "queries": {
+                                "languageTo": "@body('Parse_JSON')?['Code']",
+                                "query": "@triggerBody()?['ProductDescription']"
+                            }
+                        },
+                        "runAfter": {
+                            "Parse_JSON": [
+                                "Succeeded"
+                            ]
+                        },
+                        "type": "ApiConnection"
+                    }
+                },
+                "foreach": "@body('Get_languages')",
+                "runAfter": {
+                    "Get_languages": [
+                        "Succeeded"
+                    ]
+                },
+                "type": "Foreach"
+            },
+            "Get_languages": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['microsofttranslator']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/TranslatableLanguages"
+                },
+                "runAfter": {},
+                "type": "ApiConnection"
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "parameters": {
+            "$connections": {
+                "defaultValue": {},
+                "type": "Object"
+            }
+        },
+        "triggers": {
+            "When_an_item_is_created": {
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "name": "@parameters('$connections')['sql']['connectionId']"
+                        }
+                    },
+                    "method": "get",
+                    "path": "/datasets/default/tables/@{encodeURIComponent(encodeURIComponent('[dbo].[Products]'))}/onnewitems"
+                },
+                "recurrence": {
+                    "frequency": "Minute",
+                    "interval": 3
+                },
+                "splitOn": "@triggerBody()?['value']",
+                "type": "ApiConnection"
+            }
+        }
+    }
+}

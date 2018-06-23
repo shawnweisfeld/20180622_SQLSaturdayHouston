@@ -1,3 +1,5 @@
+translation of data in sql with logicapp
+
 Computer Vision Analyze
  - shawn
  - Robert Downey Jr
@@ -17,7 +19,6 @@ Translator Text Translate
 Text Analytics Key Phrase
 Text Analytics Sentiment
 Spell Check
-Bing Search
 Entity Search
 
 
